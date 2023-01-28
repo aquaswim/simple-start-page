@@ -1,0 +1,29 @@
+### Success: login with default username and password
+POST {{baseUrl}}/api/auth/login
+Content-Type: application/json
+
+{"username":"{{username}}", "password":"{{password}}"}
+
+### Failed: login invalid credential
+POST {{baseUrl}}/api/auth/login
+Content-Type: application/json
+
+{"username":"wrong_username", "password":"wrong_password"}
+
+### Failed: login without username
+POST {{baseUrl}}/api/auth/login
+Content-Type: application/json
+
+{"username":"", "password":"password"}
+
+### Failed: login without password
+POST {{baseUrl}}/api/auth/login
+Content-Type: application/json
+
+{"username":"admin", "password":""}
+
+### Failed: login without anything
+POST {{baseUrl}}/api/auth/login
+Content-Type: application/json
+
+{"username":"", "password":""}
