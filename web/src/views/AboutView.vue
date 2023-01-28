@@ -1,7 +1,17 @@
+<script lang="ts">
+export default {
+  data(){
+    return {
+      exportData: "This is simple start page"
+    }
+  }
+}
+</script>
+
 <template>
-  <div class="about">
-    <h1>This is an about page yang bisa aku edit karena aku keren</h1>
-  </div>
+  <main class="container">
+    <p>{{ exportData }}</p>
+  </main>
 </template>
 
 <style>
