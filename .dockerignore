@@ -1,0 +1,6 @@
+web/dist
+web/node_modules
+Dockerfile
+ssp
+*.db
+*.exe
