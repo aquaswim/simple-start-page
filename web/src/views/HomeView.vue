@@ -1,5 +1,6 @@
 <script lang="ts">
 import type { ILink } from "@/data"
+import Greeting from "@/components/Greeting.vue"
 
 const links: ILink[] = [
     {url: "http://google.com", icon: "cloud", name: "Adadeh"},
@@ -8,21 +9,20 @@ for (let index = 0; index < 12; index++) {
     links.push({name: `Test ${index + 1}`})
 }
 
-// todo greeting by time
-const greeting = "Hello world"
-
 export default {
+    components: {
+        Greeting
+    },
     data() {
         return {
             links,
-            greeting
         }
     }
 }
 </script>
 <template>
     <main class="container">
-        <h1><u>{{ greeting }}</u></h1>
+        <Greeting/>
         <section id="applications">
             <div class="grid app-list">
                 <a v-for="(link, index) in links" :key="link.url" :href="link.url || '#'" class="app">
