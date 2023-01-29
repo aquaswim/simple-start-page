@@ -8,5 +8,5 @@ simple home page that show list link or application.
 * ~~implement api~~
 * ~~integrate front end + api~~
 * ~~presistance storage (diskv)~~
-* setting  list link
+* ~~setting  list link~~
 * get list application from docker

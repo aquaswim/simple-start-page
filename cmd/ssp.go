@@ -16,12 +16,14 @@ var dbPath string
 var authSecret string
 var listenAddr string
 var isDev bool
+var skipSeeder bool
 
 func init() {
 	flag.StringVar(&dbPath, "db", "", "DB File Path")
 	flag.StringVar(&authSecret, "secret", "", "JWT secret")
 	flag.StringVar(&listenAddr, "listen", "127.0.0.1:3000", "Listen address")
 	flag.BoolVar(&isDev, "dev", false, "Dev Mode")
+	flag.BoolVar(&skipSeeder, "skipSeed", false, "Skip seeding")
 }
 
 func main() {
@@ -45,6 +47,13 @@ func main() {
 
 	authRepo := repositories.NewAuthRepo(db)
 	settingRepo := repositories.NewSettingRepo(db)
+	if !skipSeeder {
+		err := internal.RunDbSeeder(authRepo, settingRepo)
+		if err != nil {
+			log.Fatalln("Error running seeder", err)
+		}
+	}
+
 	authSvc := services.NewAuthService(authSecret, authRepo)
 	settingSvc := services.NewSettingService(settingRepo)
 	apiHandler := handlers.NewApiHandler(authSvc, settingSvc)
