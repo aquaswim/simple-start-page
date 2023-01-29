@@ -30,17 +30,17 @@ func (h *handler) UpdateAuth(ctx *fiber.Ctx) error {
 func (h *handler) GetListLink(ctx *fiber.Ctx) error {
 	links, err := h.settingService.ListLink()
 	if err != nil {
-		return err
+		return pkg.GenerateErrorResponse(ctx, err)
 	}
-	return ctx.JSON(links)
+	return pkg.GenerateSuccessResponse(ctx, links)
 }
 
 func (h *handler) GetSetting(ctx *fiber.Ctx) error {
 	setting, err := h.settingService.GetSetting()
 	if err != nil {
-		return err
+		return pkg.GenerateErrorResponse(ctx, err)
 	}
-	return ctx.JSON(setting)
+	return pkg.GenerateSuccessResponse(ctx, setting)
 }
 
 func (h *handler) UpdateSetting(ctx *fiber.Ctx) error {
