@@ -1,16 +1,10 @@
-<script lang="ts">
-export default {
-  data(){
-    return {
-      exportData: "This is simple start page"
-    }
-  }
-}
+<script setup lang="ts">
+import { SettingStore } from '@/store';
 </script>
 
 <template>
   <main class="container">
-    <p>{{ exportData }}</p>
+    <p>{{ SettingStore.setting.value.siteAbout }}</p>
   </main>
 </template>
 

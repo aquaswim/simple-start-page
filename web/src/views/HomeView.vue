@@ -1,31 +1,29 @@
 <script lang="ts">
 import type { ILink } from "@/data"
 import Greeting from "@/components/Greeting.vue"
-
-const links: ILink[] = [
-    {url: "http://google.com", icon: "cloud", name: "Adadeh"},
-]
-for (let index = 0; index < 12; index++) {
-    links.push({name: `Test ${index + 1}`})
-}
+import { useFetch } from "@/utils"
 
 export default {
     components: {
         Greeting
     },
-    data() {
+    setup(){
+        const { isLoading, data, execute } = useFetch<ILink[]>("GET", "/api/links")
         return {
-            links,
+            isLoading, links: data, fetchLinks: execute
         }
+    },
+    mounted(){
+        this.fetchLinks()
     }
 }
 </script>
 <template>
     <main class="container">
         <Greeting/>
-        <section id="applications">
+        <section id="applications" :aria-busy="isLoading">
             <div class="grid app-list">
-                <a v-for="(link, index) in links" :key="link.url" :href="link.url || '#'" class="app">
+                <a v-for="(link, index) in links" :key="link.url" :href="link.url || '#'" class="app" target="_blank">
                     <i class="material-icons">{{ link.icon || 'question_mark' }}</i>
                     <span>{{ link.name }}</span>
                 </a>
