@@ -29,7 +29,7 @@ func NewServer(cfg *Config, apiHandler handlers.ApiHandler) Server {
 	api.Get("/setting", apiHandler.GetSetting)
 	api.Post("/auth/login", apiHandler.Login)
 	api.Put("/auth/login", apiHandler.CekAuth, apiHandler.UpdateAuth)
-	api.Put("/auth/setting", apiHandler.CekAuth, apiHandler.UpdateSetting)
+	api.Put("/setting", apiHandler.CekAuth, apiHandler.UpdateSetting)
 
 	// static files
 	if cfg.Dev {
