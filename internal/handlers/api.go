@@ -92,6 +92,24 @@ type ApiHandler interface {
 	Login(ctx *fiber.Ctx) error
 	CekAuth(ctx *fiber.Ctx) error
 	UpdateAuth(ctx *fiber.Ctx) error
+	UpdateLinks(ctx *fiber.Ctx) error
+}
+
+func (h *handler) UpdateLinks(ctx *fiber.Ctx) error {
+	s := &struct {
+		Links []entities.Link `json:"links"`
+	}{}
+	if err := ctx.BodyParser(s); err != nil {
+		return pkg.GenerateErrorResponse(ctx, err)
+	}
+	if err := pkg.ValidateStruct(s); err != nil {
+		return pkg.GenerateErrorResponse(ctx, err)
+	}
+	err := h.settingService.UpdateListLink(&s.Links)
+	if err != nil {
+		return pkg.GenerateErrorResponse(ctx, err)
+	}
+	return pkg.GenerateSuccessResponse(ctx, nil)
 }
 
 func NewApiHandler(auth services.Auth, setting services.Setting) ApiHandler {

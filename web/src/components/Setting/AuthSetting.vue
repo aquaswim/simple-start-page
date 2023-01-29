@@ -13,17 +13,19 @@ const authUpdate =async () => {
 
 </script>
 <template>
-    <form @submit.prevent="authUpdate">
-        <label for="input-auth-username">
-            Username
-            <input type="text" id="input-auth-username" name="input-auth-username" placeholder="new username" required v-model="updAuthForm.username">
-        </label>
-        
-        <label for="lastname">
-            Password
-            <input type="password" id="lastname" name="lastname" placeholder="new password" required v-model="updAuthForm.password">
-        </label>
-        <button type="submit" :aria-busy="isLoading">Save</button>
-        
-    </form>
+    <article>
+        <form @submit.prevent="authUpdate">
+            <label for="input-auth-username">
+                Username
+                <input type="text" id="input-auth-username" name="input-auth-username" placeholder="new username" required v-model="updAuthForm.username">
+            </label>
+            
+            <label for="lastname">
+                Password
+                <input type="password" id="lastname" name="lastname" placeholder="new password" required v-model="updAuthForm.password">
+            </label>
+            <button type="submit" :aria-busy="isLoading">Save</button>
+            
+        </form>
+    </article>
 </template>

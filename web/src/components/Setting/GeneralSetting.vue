@@ -30,20 +30,22 @@ onMounted( async () => {
 </script>
 
 <template>
-    <form @submit.prevent="sgUpdate">
-        <label for="input-site-title">Text</label>
-        <input type="text" id="input-site-title" name="site_title" placeholder="My Site" v-model="sgFormData.siteTitle">
-        
-        <label for="input-about">About page content</label>
-        <textarea name="about" id="input-about" rows="10" placeholder="This is my simple site" v-model="sgFormData.siteAbout"></textarea>
-        
-        <fieldset>
-            <label for="input-hide-setting">
-                <input type="checkbox" id="input-hide-setting" name="hide_setting" role="switch" v-model="sgFormData.hideSetting">
-                Hide setting page
-            </label>
-        </fieldset>
-        
-        <input type="submit" value="Save" :aria-busy="sgUpdIsLoading">
-    </form>
+    <article>
+        <form @submit.prevent="sgUpdate">
+            <label for="input-site-title">Text</label>
+            <input type="text" id="input-site-title" name="site_title" placeholder="My Site" v-model="sgFormData.siteTitle">
+            
+            <label for="input-about">About page content</label>
+            <textarea name="about" id="input-about" rows="10" placeholder="This is my simple site" v-model="sgFormData.siteAbout"></textarea>
+            
+            <fieldset>
+                <label for="input-hide-setting">
+                    <input type="checkbox" id="input-hide-setting" name="hide_setting" role="switch" v-model="sgFormData.hideSetting">
+                    Hide setting page
+                </label>
+            </fieldset>
+            
+            <input type="submit" value="Save" :aria-busy="sgUpdIsLoading">
+        </form>
+    </article>
 </template>

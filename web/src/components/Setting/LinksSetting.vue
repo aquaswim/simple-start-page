@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import type { ILink } from '@/data';
-import { ref } from 'vue';
+import { useFetch } from '@/utils';
+import { ref, onMounted } from 'vue';
+import { AuthStore } from '@/store';
 
 const linksListForm = ref<(ILink & {id: string})[]>([])
 const addLinkForm = ref<ILink>({name: "", url: "", icon: ""})
@@ -15,9 +17,31 @@ const deleteLinkFromList = (id: string) => {
     linksListForm.value = linksListForm.value.filter( l => l.id !== id)
 }
 
+const {isLoading: getIsLoading, data: listData, execute: executeGetList} = useFetch<ILink[]>("GET", "/api/links")
+const refreshList =async () => {
+    await executeGetList()
+    if(listData.value) {
+        linksListForm.value = listData.value.map((link, index) => ({
+            ...link,
+            id: `prepopulated-${index}`
+        }))
+    }
+}
+onMounted(async () => {
+    await refreshList()
+})
+// save data logics
+const {isLoading: saveIsLoading, error: saveError, execute: executeSave} = useFetch("PUT", "/api/links")
+const saveLinkList = async () => {
+    await executeSave({
+        links: linksListForm.value
+    }, AuthStore.authToken.value)
+    await refreshList()
+}
+
 </script>
 <template>
-    <div>
+    <article :aria-busy="saveIsLoading">
         <table role="grid">
             <thead>
                 <tr>
@@ -37,7 +61,7 @@ const deleteLinkFromList = (id: string) => {
                         <a :href="link.url" target="_blank">{{ link.url }}</a>
                     </td>
                     <th scope="row">
-                        <button class="secondary" @click="deleteLinkFromList(link.id)">
+                        <button class="secondary" @click="deleteLinkFromList(link.id)" :aria-busy="saveIsLoading">
                             <i class="material-icons">delete</i>
                         </button>
                     </th>
@@ -53,13 +77,13 @@ const deleteLinkFromList = (id: string) => {
                         <input type="text" placeholder="https://example.com" v-model="addLinkForm.url"/>
                     </td>
                     <th scope="row">
-                        <button class="contrast" @click="addLinkToList">
+                        <button class="contrast" @click="addLinkToList" :aria-busy="saveIsLoading">
                             <i class="material-icons">done</i>
                         </button>
                     </th>
                 </tr>
             </tbody>
         </table>
-        <button>Save</button>
-    </div>
+        <button @click="saveLinkList" :aria-busy="saveIsLoading">Save</button>
+    </article>
 </template>
