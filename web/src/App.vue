@@ -1,13 +1,13 @@
 <script setup lang="ts">
 import { RouterView } from "vue-router";
-import Nav from "./components/Nav.vue";
-import Footer from "./components/Footer.vue";
+import Nav from "./components/MainNav.vue";
+import Footer from "./components/MainFooter.vue";
 import { SettingStore } from "./store";
 import { onMounted } from "vue";
 // todo refetch setting mechanism
 onMounted(() => {
-  SettingStore.fetchSetting()
-})
+  SettingStore.fetchSetting();
+});
 </script>
 
 <template>
@@ -16,5 +16,4 @@ onMounted(() => {
   <Footer />
 </template>
 
-<style scoped>
-</style>
+<style scoped></style>
