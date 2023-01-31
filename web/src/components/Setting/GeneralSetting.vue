@@ -24,7 +24,10 @@ async function sgUpdate() {
     AuthStore.authToken.value
   );
   if (sgUpdError && sgUpdError.value) {
-    AlertModalStore.showAlertModal(sgUpdError.value.message, "Error updating general setting");
+    AlertModalStore.showAlertModal(
+      sgUpdError.value.message,
+      "Error updating general setting"
+    );
   }
   await SettingStore.fetchSetting();
 }

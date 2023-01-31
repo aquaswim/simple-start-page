@@ -47,7 +47,10 @@ const saveLinkList = async () => {
     AuthStore.authToken.value
   );
   if (saveError.value && saveError.value.message) {
-    AlertModalStore.showAlertModal(saveError.value.message, "Error updating links");
+    AlertModalStore.showAlertModal(
+      saveError.value.message,
+      "Error updating links"
+    );
   }
   await refreshList();
 };

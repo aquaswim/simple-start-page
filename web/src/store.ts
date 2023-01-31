@@ -26,11 +26,11 @@ export const AlertModalStore = {
   state: ref({
     show: false,
     title: "",
-    message: ""
+    message: "",
   }),
-  showAlertModal: function(message: string, title: string){
-    this.state.value.title= title;
+  showAlertModal: function (message: string, title: string) {
+    this.state.value.title = title;
     this.state.value.message = message;
     this.state.value.show = true;
-  }
-}
+  },
+};
