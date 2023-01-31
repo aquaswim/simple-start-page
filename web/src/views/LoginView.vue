@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { useFetch } from "@/utils";
 import { reactive } from "vue";
-import { AuthStore } from "@/store";
+import { AlertModalStore, AuthStore } from "@/store";
 import type { ILoginResp } from "@/data";
 import { useRouter } from "vue-router";
 
@@ -19,7 +19,7 @@ async function login() {
     password: loginForm.password,
   });
   if (loginError.value != null) {
-    alert(loginError.value.message);
+    AlertModalStore.showAlertModal(loginError.value.message, "Login Error");
   }
 
   if (loginResponse.value != null && loginResponse.value.token) {

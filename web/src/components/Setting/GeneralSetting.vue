@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { ISetting } from "@/data";
-import { AuthStore, SettingStore } from "@/store";
+import { AlertModalStore, AuthStore, SettingStore } from "@/store";
 import { useFetch } from "@/utils";
 import { ref, onMounted } from "vue";
 
@@ -24,7 +24,7 @@ async function sgUpdate() {
     AuthStore.authToken.value
   );
   if (sgUpdError && sgUpdError.value) {
-    alert(sgUpdError.value.message);
+    AlertModalStore.showAlertModal(sgUpdError.value.message, "Error updating general setting");
   }
   await SettingStore.fetchSetting();
 }

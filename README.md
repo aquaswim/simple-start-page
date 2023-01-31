@@ -10,3 +10,4 @@ simple home page that show list link or application.
 * ~~presistance storage (diskv)~~
 * ~~setting  list link~~
 * get list application from docker
+* proper ui (remove alert, better app list)

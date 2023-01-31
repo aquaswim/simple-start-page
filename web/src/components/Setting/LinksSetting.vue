@@ -2,7 +2,7 @@
 import type { ILink } from "@/data";
 import { useFetch } from "@/utils";
 import { ref, onMounted } from "vue";
-import { AuthStore } from "@/store";
+import { AlertModalStore, AuthStore } from "@/store";
 
 const linksListForm = ref<(ILink & { id: string })[]>([]);
 const addLinkForm = ref<ILink>({ name: "", url: "", icon: "" });
@@ -47,7 +47,7 @@ const saveLinkList = async () => {
     AuthStore.authToken.value
   );
   if (saveError.value && saveError.value.message) {
-    alert(saveError.value.message);
+    AlertModalStore.showAlertModal(saveError.value.message, "Error updating links");
   }
   await refreshList();
 };

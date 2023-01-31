@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { AuthStore } from "@/store";
+import { AlertModalStore, AuthStore } from "@/store";
 import { useFetch } from "@/utils";
 import { ref } from "vue";
 const updAuthForm = ref({ username: "", password: "" });
@@ -11,7 +11,7 @@ const {
 const authUpdate = async () => {
   await executeUpdate({ ...updAuthForm.value }, AuthStore.authToken.value);
   if (error.value && error.value.message) {
-    alert(error.value.message);
+    AlertModalStore.showAlertModal(error.value.message, "Error update auth");
   }
 };
 </script>
