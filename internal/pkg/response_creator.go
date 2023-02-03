@@ -20,7 +20,7 @@ func GenerateSuccessResponse(ctx *fiber.Ctx, data interface{}) error {
 }
 
 func GenerateErrorResponse(ctx *fiber.Ctx, err error) error {
-	if appErr, ok := err.(error2.AppError); ok {
+	if appErr, ok := err.(*error2.AppError); ok {
 		switch appErr.Code {
 		case error2.ErrCodeInvalidCredential:
 			ctx.Status(400)
