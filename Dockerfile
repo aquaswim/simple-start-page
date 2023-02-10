@@ -17,4 +17,5 @@ RUN apk add --no-cache tzdata
 COPY --from=builder /app/ssp /usr/local/bin/ssp
 EXPOSE 3000
 
+VOLUME ["/data.db"]
 ENTRYPOINT ["ssp" , "-db=/data.db", "-listen=:3000"]
