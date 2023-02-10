@@ -36,8 +36,10 @@ func (s *setting) ListLink() (*[]entities.Link, error) {
 	dockerLinks, err := s.dockerClient.GetLinks()
 	if err != nil {
 		log.Println("Error on docker.GetLinks", err)
+	} else if dockerLinks != nil {
+		dockerLinks = append(dockerLinks, *links...)
+		return &dockerLinks, nil
 	}
-	// todo append docker links to link
 	return links, nil
 }
 

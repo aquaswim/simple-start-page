@@ -4,7 +4,7 @@ import (
 	"context"
 	"github.com/docker/docker/api/types"
 	"github.com/docker/docker/api/types/filters"
-	"github.com/docker/docker/client"
+	dockerClient "github.com/docker/docker/client"
 	"simple-start-page/internal/entities"
 )
 
@@ -14,7 +14,7 @@ type Docker interface {
 }
 
 type docker struct {
-	client *client.Client
+	client *dockerClient.Client
 }
 
 func (d *docker) Close() error {
@@ -51,7 +51,7 @@ func (d *docker) GetLinks() ([]entities.Link, error) {
 }
 
 func NewDockerIntegration() (Docker, error) {
-	cli, err := client.NewClientWithOpts(client.FromEnv, client.WithAPIVersionNegotiation())
+	cli, err := dockerClient.NewClientWithOpts(dockerClient.FromEnv, dockerClient.WithAPIVersionNegotiation())
 	if err != nil {
 		return nil, err
 	}
