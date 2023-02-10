@@ -9,5 +9,5 @@ simple home page that show list link or application.
 * ~~integrate front end + api~~
 * ~~presistance storage (diskv)~~
 * ~~setting  list link~~
-* get list application from docker
+* ~~get list application from docker~~
 * proper ui (remove alert, better app list)

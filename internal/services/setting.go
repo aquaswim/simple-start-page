@@ -1,12 +1,15 @@
 package services
 
 import (
+	"log"
+	"simple-start-page/internal/docker"
 	"simple-start-page/internal/entities"
 	"simple-start-page/internal/repositories"
 )
 
 type setting struct {
-	settingRepo repositories.Setting
+	settingRepo  repositories.Setting
+	dockerClient docker.Docker
 }
 
 func (s *setting) UpdateListLink(urls *[]entities.Link) error {
@@ -30,6 +33,13 @@ func (s *setting) ListLink() (*[]entities.Link, error) {
 	if err != nil {
 		return nil, err
 	}
+	dockerLinks, err := s.dockerClient.GetLinks()
+	if err != nil {
+		log.Println("Error on docker.GetLinks", err)
+	} else if dockerLinks != nil {
+		dockerLinks = append(dockerLinks, *links...)
+		return &dockerLinks, nil
+	}
 	return links, nil
 }
 
@@ -40,8 +50,9 @@ type Setting interface {
 	UpdateSetting(setting2 *entities.Setting) error
 }
 
-func NewSettingService(settingRepo repositories.Setting) Setting {
+func NewSettingService(settingRepo repositories.Setting, dockerClient docker.Docker) Setting {
 	return &setting{
-		settingRepo: settingRepo,
+		settingRepo:  settingRepo,
+		dockerClient: dockerClient,
 	}
 }

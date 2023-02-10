@@ -6,6 +6,7 @@ import (
 	"log"
 	"os"
 	"simple-start-page/internal"
+	"simple-start-page/internal/docker"
 	"simple-start-page/internal/handlers"
 	"simple-start-page/internal/repositories"
 	"simple-start-page/internal/services"
@@ -17,6 +18,7 @@ var authSecret string
 var listenAddr string
 var isDev bool
 var skipSeeder bool
+var enableDockerIntegration bool
 
 func init() {
 	flag.StringVar(&dbPath, "db", "", "DB File Path")
@@ -24,6 +26,7 @@ func init() {
 	flag.StringVar(&listenAddr, "listen", "127.0.0.1:3000", "Listen address")
 	flag.BoolVar(&isDev, "dev", false, "Dev Mode")
 	flag.BoolVar(&skipSeeder, "skipSeed", false, "Skip seeding")
+	flag.BoolVar(&enableDockerIntegration, "docker", false, "Enable docker integration")
 }
 
 func main() {
@@ -53,9 +56,19 @@ func main() {
 			log.Fatalln("Error running seeder", err)
 		}
 	}
+	dockerClient, err := (func() (docker.Docker, error) {
+		if enableDockerIntegration {
+			return docker.NewDockerIntegration()
+		} else {
+			return docker.NewDockerDummyClient(), nil
+		}
+	})()
+	if err != nil {
+		log.Fatalln("Error creating docker client: ", err)
+	}
 
 	authSvc := services.NewAuthService(authSecret, authRepo)
-	settingSvc := services.NewSettingService(settingRepo)
+	settingSvc := services.NewSettingService(settingRepo, dockerClient)
 	apiHandler := handlers.NewApiHandler(authSvc, settingSvc)
 	sspServer := internal.NewServer(&internal.Config{
 		ListenAddr: ":3000",
