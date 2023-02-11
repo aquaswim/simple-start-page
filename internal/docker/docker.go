@@ -37,7 +37,7 @@ func (d *docker) GetLinks() ([]entities.Link, error) {
 		// only accept container that have ssp.url, ssp.name, ssp.icon label
 		url, urlKeyExists := container.Labels["com.ssp.url"]
 		icon, iconKeyExists := container.Labels["com.ssp.icon"]
-		name, nameKeyExists := container.Labels["com.ssp.url"]
+		name, nameKeyExists := container.Labels["com.ssp.name"]
 		if !urlKeyExists || !iconKeyExists || !nameKeyExists {
 			continue
 		}
