@@ -1,0 +1,266 @@
+_type: export
+__export_format: 4
+__export_date: 2023-02-18T03:02:27.442Z
+__export_source: insomnia.desktop.app:v2022.7.3
+resources:
+  - _id: req_872460f593994da8b11885ce52b84dff
+    parentId: fld_13b46c675d4c4e3dbddf2e71b2efaff5
+    modified: 1676689207757
+    created: 1676688631808
+    url: "{{baseUrl}}/api/links"
+    name: Update Link
+    description: ""
+    method: PUT
+    body:
+      mimeType: application/json
+      text: |-
+        {
+        	"links": [
+        		{
+        			"name": "Search engine",
+        			"url": "https://duckduckgo.com",
+        			"icon": "search"
+        		},
+        		{
+        			"name": "Search engine",
+        			"url": "https://google.com",
+        			"icon": "search"
+        		}
+        	]
+        }
+    parameters: []
+    headers:
+      - name: Content-Type
+        value: application/json
+        id: pair_071c35137c0647609527881679cc8b97
+      - id: pair_55a0e817fe29476d8a6bac924e676a9f
+        name: Authorization
+        value: "{% response 'body', 'req_91e58741fc754297a2e026864d6fea9b',
+          'b64::JC5kYXRhLnRva2Vu::46b', 'when-expired', 3600 %}"
+        description: ""
+    authentication: {}
+    metaSortKey: -1676688631808
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: fld_13b46c675d4c4e3dbddf2e71b2efaff5
+    parentId: wrk_f45a7d1ecf6a4eeca3bb43cb94ea50a8
+    modified: 1676688532256
+    created: 1676688532256
+    name: Update Setting
+    description: ""
+    environment: {}
+    environmentPropertyOrder: null
+    metaSortKey: -1676688532256
+    _type: request_group
+  - _id: wrk_f45a7d1ecf6a4eeca3bb43cb94ea50a8
+    parentId: null
+    modified: 1676687511099
+    created: 1676687511099
+    name: New Document
+    description: ""
+    scope: design
+    _type: workspace
+  - _id: req_c11665340cb645389127e69ec6c37145
+    parentId: fld_13b46c675d4c4e3dbddf2e71b2efaff5
+    modified: 1676689133503
+    created: 1676688593245
+    url: "{{baseUrl}}/api/setting"
+    name: Update Setting
+    description: ""
+    method: PUT
+    body:
+      mimeType: application/json
+      text: |-
+        {
+        	"siteTitle": "My Site",
+        	"siteAbout": "This is example of about",
+        	"hideSetting":false
+        }
+    parameters: []
+    headers:
+      - name: Content-Type
+        value: application/json
+        id: pair_fd244d66676445f586d852aa82f04e95
+      - id: pair_3b189e5247194a80b77ab01a107eaf6a
+        name: Authorization
+        value: "{% response 'body', 'req_91e58741fc754297a2e026864d6fea9b',
+          'b64::JC5kYXRhLnRva2Vu::46b', 'when-expired', 3600 %}"
+        description: ""
+    authentication: {}
+    metaSortKey: -1676688593245
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_6ef78e9e26ab45f593db171c71f24443
+    parentId: fld_13b46c675d4c4e3dbddf2e71b2efaff5
+    modified: 1676689027629
+    created: 1676688533921
+    url: "{{baseUrl}}/api/auth/login"
+    name: Login Update
+    description: ""
+    method: PUT
+    body:
+      mimeType: application/json
+      text: |-
+        {
+        	"username": "{{login.username}}",
+        	"password": "{{login.password}}"
+        }
+    parameters: []
+    headers:
+      - name: Content-Type
+        value: application/json
+        id: pair_da674aa76cfb4ca0ad90bf9d88ea79f6
+      - id: pair_1a9a4a160621424c9332b3c0e24a1315
+        name: Authorization
+        value: "{% response 'body', 'req_91e58741fc754297a2e026864d6fea9b',
+          'b64::JC5kYXRhLnRva2Vu::46b', 'when-expired', 3600 %}"
+        description: ""
+    authentication: {}
+    metaSortKey: -1676688533921
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_607d787d271d4d2bb9379d4116e4cfd2
+    parentId: wrk_f45a7d1ecf6a4eeca3bb43cb94ea50a8
+    modified: 1676687734934
+    created: 1676687583544
+    url: "{{baseUrl}}/api/links"
+    name: Links
+    description: ""
+    method: GET
+    body: {}
+    parameters: []
+    headers: []
+    authentication: {}
+    metaSortKey: -1676687583544
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_057147be3a2a463ca149d3ac3a949adf
+    parentId: wrk_f45a7d1ecf6a4eeca3bb43cb94ea50a8
+    modified: 1676687873699
+    created: 1676687854551
+    url: "{{baseUrl}}/api/setting"
+    name: Setting
+    description: ""
+    method: GET
+    body: {}
+    parameters: []
+    headers: []
+    authentication: {}
+    metaSortKey: -1676687583494
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_91e58741fc754297a2e026864d6fea9b
+    parentId: wrk_f45a7d1ecf6a4eeca3bb43cb94ea50a8
+    modified: 1676688520420
+    created: 1676687903144
+    url: "{{baseUrl}}/api/auth/login"
+    name: Login
+    description: ""
+    method: POST
+    body:
+      mimeType: application/json
+      text: |-
+        {
+        	"username": "{{login.username}}",
+        	"password": "{{login.password}}"
+        }
+    parameters: []
+    headers:
+      - name: Content-Type
+        value: application/json
+    authentication: {}
+    metaSortKey: -1676687583444
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: env_12bd4ccab5fc35e62fc6a910e59a7f5e3626ec28
+    parentId: wrk_f45a7d1ecf6a4eeca3bb43cb94ea50a8
+    modified: 1676687645338
+    created: 1676687511103
+    name: Base Environment
+    data:
+      baseUrl: http://localhost:3000
+    dataPropertyOrder:
+      "&":
+        - baseUrl
+    color: null
+    isPrivate: false
+    metaSortKey: 1676687511103
+    _type: environment
+  - _id: jar_12bd4ccab5fc35e62fc6a910e59a7f5e3626ec28
+    parentId: wrk_f45a7d1ecf6a4eeca3bb43cb94ea50a8
+    modified: 1676687511105
+    created: 1676687511105
+    name: Default Jar
+    cookies: []
+    _type: cookie_jar
+  - _id: spc_61fb447947484b5eadcc48193dccc2d0
+    parentId: wrk_f45a7d1ecf6a4eeca3bb43cb94ea50a8
+    modified: 1676688172992
+    created: 1676687511100
+    fileName: simple-start-page
+    contents: ""
+    contentType: yaml
+    _type: api_spec
+  - _id: uts_2eab6b0eb2a840c6b07a39e5fbe4bee1
+    parentId: wrk_f45a7d1ecf6a4eeca3bb43cb94ea50a8
+    modified: 1676687511109
+    created: 1676687511109
+    name: Example Test Suite
+    _type: unit_test_suite
+  - _id: env_f1dd04dc6c5948a0a423e673b4185588
+    parentId: env_12bd4ccab5fc35e62fc6a910e59a7f5e3626ec28
+    modified: 1676688031533
+    created: 1676687662504
+    name: Local
+    data:
+      baseUrl: http://127.0.0.1:3000
+      login:
+        username: admin
+        password: password
+    dataPropertyOrder:
+      "&":
+        - baseUrl
+        - login
+      "&~|login":
+        - username
+        - password
+    color: null
+    isPrivate: false
+    metaSortKey: 1676687662504
+    _type: environment
