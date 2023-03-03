@@ -28,7 +28,8 @@ func (h *handler) UpdateAuth(ctx *fiber.Ctx) error {
 }
 
 func (h *handler) GetListLink(ctx *fiber.Ctx) error {
-	links, err := h.settingService.ListLink()
+	isSkipDockerLink := ctx.Query("noDocker", "") == "1"
+	links, err := h.settingService.ListLink(isSkipDockerLink)
 	if err != nil {
 		return pkg.GenerateErrorResponse(ctx, err)
 	}

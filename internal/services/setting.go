@@ -28,10 +28,13 @@ func (s *setting) GetSetting() (*entities.Setting, error) {
 	return st, nil
 }
 
-func (s *setting) ListLink() (*[]entities.Link, error) {
+func (s *setting) ListLink(isSkipGetDockerLinks bool) (*[]entities.Link, error) {
 	links, err := s.settingRepo.GetListUrls()
 	if err != nil {
 		return nil, err
+	}
+	if isSkipGetDockerLinks {
+		return links, nil
 	}
 	dockerLinks, err := s.dockerClient.GetLinks()
 	if err != nil {
@@ -44,7 +47,7 @@ func (s *setting) ListLink() (*[]entities.Link, error) {
 }
 
 type Setting interface {
-	ListLink() (*[]entities.Link, error)
+	ListLink(isSkipGetDockerLinks bool) (*[]entities.Link, error)
 	GetSetting() (*entities.Setting, error)
 	UpdateListLink(*[]entities.Link) error
 	UpdateSetting(setting2 *entities.Setting) error
