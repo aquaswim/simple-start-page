@@ -19,7 +19,7 @@ const deleteLinkFromList = (id: string) => {
 
 const { data: listData, execute: executeGetList } = useFetch<ILink[]>(
   "GET",
-  "/api/links"
+  "/api/links?noDocker=1"
 );
 const refreshList = async () => {
   await executeGetList();
