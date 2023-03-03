@@ -1,11 +1,11 @@
 _type: export
 __export_format: 4
-__export_date: 2023-02-18T03:02:27.442Z
+__export_date: 2023-03-03T15:00:25.725Z
 __export_source: insomnia.desktop.app:v2022.7.3
 resources:
   - _id: req_872460f593994da8b11885ce52b84dff
     parentId: fld_13b46c675d4c4e3dbddf2e71b2efaff5
-    modified: 1676689207757
+    modified: 1676701601420
     created: 1676688631808
     url: "{{baseUrl}}/api/links"
     name: Update Link
@@ -17,14 +17,34 @@ resources:
         {
         	"links": [
         		{
-        			"name": "Search engine",
-        			"url": "https://duckduckgo.com",
-        			"icon": "search"
+        			"name": "Portainer",
+        			"url": "https://portnainer.korone.aquaswim.my.id",
+        			"icon": "docker"
         		},
         		{
-        			"name": "Search engine",
-        			"url": "https://google.com",
-        			"icon": "search"
+        			"name": "Transmission",
+        			"url": "https://torrent.korone.aquaswim.my.id",
+        			"icon": "pirate"
+        		},
+        		{
+        			"name": "Jackett",
+        			"url": "https://jackett.korone.aquaswim.my.id",
+        			"icon": "magnify-scan"
+        		},
+        		{
+        			"name": "Filebrowser",
+        			"url": "https://file.korone.aquaswim.my.id",
+        			"icon": "file-cabinet"
+        		},
+        		{
+        			"name": "Pyload",
+        			"url": "https://download.korone.aquaswim.my.id",
+        			"icon": "cloud-download"
+        		},
+        		{
+        			"name": "Netdata",
+        			"url": "https://netdata.korone.aquaswim.my.id",
+        			"icon": "query_stats"
         		}
         	]
         }
@@ -150,6 +170,27 @@ resources:
     headers: []
     authentication: {}
     metaSortKey: -1676687583544
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_69abe45184594e39b09b4dee4f363bd2
+    parentId: wrk_f45a7d1ecf6a4eeca3bb43cb94ea50a8
+    modified: 1677855553093
+    created: 1677855553093
+    url: "{{baseUrl}}/api/links"
+    name: Links without docker
+    description: ""
+    method: GET
+    body: {}
+    parameters: []
+    headers: []
+    authentication: {}
+    metaSortKey: -1676687583519
     isPrivate: false
     settingStoreCookies: true
     settingSendCookies: true
