@@ -1,10 +1,9 @@
 <template>
   <footer class="container-fluid">
     <small
-      >Built with <a href="https://picocss.com" class="secondary">Pico</a> •
+      >Built with ❤️ •
       <a
-        href="https://github.com/picocss/examples/tree/master/sign-in/"
-        class="secondary"
+        href="https://github.com/aquaswim/simple-start-page"
         >Source code</a
       ></small
     >
