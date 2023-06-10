@@ -23,49 +23,49 @@ export default {
 <template>
   <main class="container">
     <Greeting />
-    <section id="applications" :aria-busy="isLoading">
-      <div class="grid app-list">
-        <a
-        v-for="link in links"
-        :key="link.url"
-        :href="link.url || '#'"
-        class="app"
-        target="_blank"
-        >
-        <i class="material-icons">{{ link.icon || "question_mark" }}</i>
-        <div>
-          <h3>
-            {{ link.name }}
-          </h3>
-          <small>
-            {{ link.url }}
-          </small>
+    <section class="services">
+      <a target="_blank" :href="link.url" class="service-item" v-for="link in links" :key="link.url">
+        <div class="service-icon">
+          <i class="material-icons">{{ link.icon || "question_mark" }}</i>
         </div>
+        <div class="service-heading">{{ link.name }}</div>
       </a>
-    </div>
-  </section>
-</main>
+    </section>
+  </main>
 </template>
 
 <style scoped>
-.app-list {
+.services {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-gap: 20px;
+}
+
+.service-item {
+  background-color: #121e27;
+  padding: 20px;
+  border-radius: 5px;
+  text-align: center;
+  transition: background-color 0.3s;
+  cursor: pointer;
   display: flex;
-  flex-wrap: wrap;
   flex-direction: column;
-}
-.app {
-  display: flex;
-  flex-direction: row;
-  margin-bottom: 1rem;
-}
-a.app:is(:hover, :active, :focus) {
+  align-items: center;
   text-decoration: none;
+  color: unset;
 }
-.app div h3{
-  margin-bottom: 0;
+
+.service-item:hover {
+  background-color: #293846;
 }
-i.material-icons {
-  vertical-align: bottom;
-  font-size: 3.4rem;
+
+.service-icon {
+  font-size: 40px;
+  margin-bottom: 10px;
+}
+
+.service-heading {
+  font-size: 18px;
+  margin-bottom: 5px;
 }
 </style>
