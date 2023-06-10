@@ -8,6 +8,7 @@ import (
 	"net/http"
 	"simple-start-page/internal/handlers"
 	"simple-start-page/web"
+	"time"
 )
 
 type Server struct {
@@ -17,7 +18,8 @@ type Server struct {
 
 func NewServer(cfg *Config, apiHandler handlers.ApiHandler) Server {
 	app := fiber.New(fiber.Config{
-		EnablePrintRoutes: cfg.Dev,
+		EnablePrintRoutes:     cfg.Dev,
+		DisableStartupMessage: !cfg.Dev,
 	})
 	app.Use(recover.New(recover.Config{EnableStackTrace: cfg.Dev}))
 	if cfg.Dev {
@@ -54,4 +56,8 @@ func NewServer(cfg *Config, apiHandler handlers.ApiHandler) Server {
 
 func (s *Server) Start() error {
 	return s.App.Listen(s.cfg.ListenAddr)
+}
+
+func (s *Server) Stop() error {
+	return s.App.ShutdownWithTimeout(1 * time.Minute)
 }
