@@ -57,6 +57,7 @@ const saveLinkList = async () => {
 </script>
 <template>
   <article :aria-busy="saveIsLoading">
+    <small>Material icon reference: <a href="https://marella.me/material-icons/demo/" target="_blank">here</a></small>
     <table role="grid">
       <thead>
         <tr>

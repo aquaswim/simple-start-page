@@ -12,6 +12,8 @@
     "dev-build": "vite build --watch"
   },
   "dependencies": {
+    "@picocss/pico": "^1.5.10",
+    "material-icons": "^1.13.8",
     "vue": "^3.2.45",
     "vue-router": "^4.1.6"
   },
