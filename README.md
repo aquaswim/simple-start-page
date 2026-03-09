@@ -24,6 +24,6 @@ simple home page that show list link or application.
 
 ## Todo
 * proper ui (remove alert, better app list)
-* update go version
+* ~~update go version~~
 * use my my vue library
 * use env variable instead

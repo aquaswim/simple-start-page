@@ -2,10 +2,11 @@ package docker
 
 import (
 	"context"
-	"github.com/docker/docker/api/types"
+	"simple-start-page/internal/entities"
+
+	"github.com/docker/docker/api/types/container"
 	"github.com/docker/docker/api/types/filters"
 	dockerClient "github.com/docker/docker/client"
-	"simple-start-page/internal/entities"
 )
 
 type Docker interface {
@@ -22,7 +23,7 @@ func (d *docker) Close() error {
 }
 
 func (d *docker) GetLinks() ([]entities.Link, error) {
-	containers, err := d.client.ContainerList(context.Background(), types.ContainerListOptions{
+	containers, err := d.client.ContainerList(context.Background(), container.ListOptions{
 		Filters: filters.NewArgs(filters.Arg("status", "running")),
 	})
 	if err != nil {
