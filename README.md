@@ -23,12 +23,7 @@ simple home page that show list link or application.
    ```./ssp -db=<database path> -secret=<app secret>```
 
 ## Todo
-* ~~frontend (vue)~~
-* ~~serve as embed (use go embed)~~
-* ~~implement front end~~
-* ~~implement api~~
-* ~~integrate front end + api~~
-* ~~presistance storage (diskv)~~
-* ~~setting  list link~~
-* ~~get list application from docker~~
 * proper ui (remove alert, better app list)
+* update go version
+* use my my vue library
+* use env variable instead
